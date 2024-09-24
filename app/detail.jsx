@@ -1,4 +1,4 @@
-import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
+import { Pressable, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React, { useContext } from "react";
 import * as Clipboard from "expo-clipboard";
 import { Context } from "@/hooks/Context";
@@ -26,18 +26,18 @@ const DetailScreen = () => {
           <Text style={{}}>{qrCodeDetail}</Text>
         </View>
         <View style={styles.copyButton}>
-          <Pressable
+          <TouchableOpacity
             style={{ marginTop: 14, width: "100%" }}
             onPress={() => copyToClipboard(qrCodeDetail)}
           >
             <Text style={styles.copyText}>Copy Content</Text>
-          </Pressable>
-          <Pressable
+          </TouchableOpacity>
+          <TouchableOpacity
             style={{ marginTop: 4, width: "100%" }}
             onPress={() => navigate.navigate("index", { screen: "index" })}
           >
             <Text style={styles.copyText}>Scan other QR</Text>
-          </Pressable>
+          </TouchableOpacity>
         </View>
       </View>
     </ScrollView>
@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
   copyText: {
     borderWidth: 2,
     borderColor: "black",
-    padding: 6,
+    padding: 8,
     backgroundColor: "black",
     color: "white",
     borderRadius: 5,
