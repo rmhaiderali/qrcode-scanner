@@ -7,6 +7,8 @@ import {
   Easing,
   TouchableOpacity,
   Pressable,
+  Linking,
+  Alert,
 } from "react-native";
 import { CameraView, Camera } from "expo-camera";
 import { MaterialIcons, Ionicons } from "@expo/vector-icons";
@@ -15,8 +17,8 @@ import { useNavigation } from "expo-router";
 import { DrawerActions } from "@react-navigation/native";
 
 export default function QrCode() {
-  const [hasPermission, setHasPermission] = useState(null);
-  // const [scanned, setScanned] = useState(false);
+  const [hasPermission, setHasPermission] = useState(false);
+  const [canAskAgain, setCanAskAgain] = useState(true);
   const [flash, setFlash] = useState(false);
   const [facing, setFacing] = useState("back");
   const animationValue = useRef(new Animated.Value(0)).current;
@@ -24,12 +26,14 @@ export default function QrCode() {
 
   const navigate = useNavigation();
 
-  useEffect(() => {
-    const getCameraPermissions = async () => {
-      const { status } = await Camera.requestCameraPermissionsAsync();
-      setHasPermission(status === "granted");
-    };
+  const getCameraPermissions = async () => {
+    const { status, canAskAgain } =
+      await Camera.requestCameraPermissionsAsync();
+    setHasPermission(status === "granted");
+    setCanAskAgain(canAskAgain);
+  };
 
+  useEffect(() => {
     getCameraPermissions();
     startAnimation();
   }, []);
@@ -54,19 +58,46 @@ export default function QrCode() {
   };
 
   const getQrCodeData = ({ type, data }) => {
-    // console.log(data);
     setQrCodeDetail(data);
-    // setScanned(true);
     navigate.navigate("detail", { screen: "detail" });
   };
 
-  if (hasPermission === null) {
-    return;
-    // return <Text>Requesting for camera permission</Text>;
-  }
-
-  if (hasPermission === false) {
-    return <Text>No access to camera</Text>;
+  if (!hasPermission) {
+    return (
+      <View
+        style={{
+          flex: 1,
+          justifyContent: "center",
+          alignContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <Text style={{ paddingBottom: "4%", fontWeight: "400" }}>
+          Permission required to access camera
+        </Text>
+        <TouchableOpacity
+          onPress={canAskAgain ? getCameraPermissions : Linking.openSettings}
+          style={{
+            borderWidth: 2,
+            padding: 5,
+            paddingHorizontal: 4,
+            borderRadius: 8,
+            backgroundColor: "#000",
+            borderColor: "#000",
+          }}
+        >
+          <Text
+            style={{
+              color: "#fff",
+              paddingHorizontal: "6%",
+              fontWeight: "400",
+            }}
+          >
+            Allow
+          </Text>
+        </TouchableOpacity>
+      </View>
+    );
   }
 
   const toggleFlash = () => {
@@ -142,17 +173,17 @@ export default function QrCode() {
           onPress={() => navigate.dispatch(DrawerActions.openDrawer())}
           style={styles.iconButton}
         >
-          <MaterialIcons name="menu" size={30} color="white" />
+          <MaterialIcons name="menu" size={34} color="white" />
         </TouchableOpacity>
         <TouchableOpacity onPress={toggleFlash} style={styles.iconButton}>
           <Ionicons
             name={flash === true ? "flashlight" : "flashlight-outline"}
-            size={30}
+            size={34}
             color="white"
           />
         </TouchableOpacity>
         <TouchableOpacity onPress={toggleCameraType} style={styles.iconButton}>
-          <MaterialIcons name="flip-camera-ios" size={30} color="white" />
+          <MaterialIcons name="flip-camera-ios" size={34} color="white" />
         </TouchableOpacity>
       </View>
     </View>
@@ -236,6 +267,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: "8%",
   },
   iconButton: {
-    padding: 10,
+    padding: 15,
   },
 });
