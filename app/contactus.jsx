@@ -8,6 +8,7 @@ import {
   ScrollView,
   ToastAndroid,
   Pressable,
+  TouchableOpacity,
 } from "react-native";
 
 export default function ContactUsScreen() {
@@ -31,25 +32,17 @@ export default function ContactUsScreen() {
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <StatusBar backgroundColor="black" style="light" />
-      {/* <Text style={styles.title}>Contact Us</Text>
-
-      <Text style={styles.paragraph}>
-        We would love to hear from you! If you have any questions, feedback, or
-        suggestions, please feel free to reach out to us through the form below
-        or by using the contact information provided.
-      </Text> */}
-
       <TextInput
         style={styles.input}
         placeholder="Your Name"
-        placeholderTextColor="#888"
+        placeholderTextColor="#555555" //
         value={name}
         onChangeText={setName}
       />
       <TextInput
         style={styles.input}
         placeholder="Your Email"
-        placeholderTextColor="#888"
+        placeholderTextColor="#555555" //
         keyboardType="email-address"
         value={email}
         onChangeText={setEmail}
@@ -57,7 +50,7 @@ export default function ContactUsScreen() {
       <TextInput
         style={[styles.input, styles.textArea]}
         placeholder="Your Message"
-        placeholderTextColor="#888"
+        placeholderTextColor="#555555" //
         multiline={true}
         numberOfLines={4}
         value={message}
@@ -70,18 +63,18 @@ export default function ContactUsScreen() {
           borderRadius: 5,
         }}
       >
-        <Pressable
+        <TouchableOpacity
           onPress={handleSubmit}
           style={{
             flex: 1,
             justifyContent: "center",
             alignItems: "center",
-            padding: 6,
+            padding: 10,
             backgroundColor: "black",
           }}
         >
           <Text style={{ color: "white" }}>Send Message</Text>
-        </Pressable>
+        </TouchableOpacity>
       </View>
 
       {/* <View style={styles.contactInfo}>
@@ -121,11 +114,12 @@ const styles = StyleSheet.create({
   },
   input: {
     height: 50,
-    borderColor: "#ccc",
+    borderColor: "gray", //
     borderWidth: 1,
     borderRadius: 5,
     paddingHorizontal: 10,
     marginBottom: 20,
+    backgroundColor: '#F2F2F2', //
   },
   textArea: {
     height: 100,

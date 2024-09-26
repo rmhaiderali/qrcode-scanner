@@ -6,6 +6,7 @@ import {
   View,
   ToastAndroid,
   ScrollView,
+  TouchableOpacity,
 } from "react-native";
 import * as FileSystem from "expo-file-system";
 import * as MediaLibrary from "expo-media-library";
@@ -57,11 +58,13 @@ export default function generateQrScreen() {
               selectionColor={"black"}
               onChangeText={setInput}
               value={input}
+              placeholderTextColor="#555555"
+
               placeholder="Content"
             />
-            <Pressable style={{ marginTop: 20 }} onPress={generateQRCode}>
+            <TouchableOpacity style={{ marginTop: 20 }} onPress={generateQRCode}>
               <Text style={styles.button}>Generate</Text>
-            </Pressable>
+            </TouchableOpacity>
           </View>
         )}
 
@@ -75,18 +78,18 @@ export default function generateQrScreen() {
                 backgroundColor="#fff"
               />
             </View>
-            <Pressable
+            <TouchableOpacity
               style={[styles.btnContainer, styles.save]}
               onPress={saveQRCode}
             >
               <Text style={styles.instraction}>Save</Text>
-            </Pressable>
-            <Pressable
+            </TouchableOpacity>
+            <TouchableOpacity
               style={[styles.btnContainer, styles.new]}
               onPress={() => setQR("")}
             >
               <Text style={styles.instraction}>Create New</Text>
-            </Pressable>
+            </TouchableOpacity>
           </View>
         )}
       </View>
@@ -126,11 +129,12 @@ const styles = StyleSheet.create({
     borderWidth: 1.5,
     marginRight: 10,
     borderRadius: 5,
-    borderColor: "#ccc",
+    borderColor: "gray",
+    backgroundColor: '#FFFFFF',
   },
 
   button: {
-    padding: 12,
+    padding: 14,
     borderRadius: 5,
     color: "white",
     backgroundColor: "black",

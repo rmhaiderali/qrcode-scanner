@@ -173,17 +173,17 @@ export default function QrCode() {
           onPress={() => navigate.dispatch(DrawerActions.openDrawer())}
           style={styles.iconButton}
         >
-          <MaterialIcons name="menu" size={34} color="white" />
+          <MaterialIcons name="menu" size={36} color="white" />
         </TouchableOpacity>
         <TouchableOpacity onPress={toggleFlash} style={styles.iconButton}>
           <Ionicons
             name={flash === true ? "flashlight" : "flashlight-outline"}
-            size={34}
+            size={36}
             color="white"
           />
         </TouchableOpacity>
         <TouchableOpacity onPress={toggleCameraType} style={styles.iconButton}>
-          <MaterialIcons name="flip-camera-ios" size={34} color="white" />
+          <MaterialIcons name="flip-camera-ios" size={36} color="white" />
         </TouchableOpacity>
       </View>
     </View>

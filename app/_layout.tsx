@@ -1,9 +1,13 @@
 import { ContextProvider } from "@/hooks/Context";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { Drawer } from "expo-router/drawer";
+import { Ionicons } from "@expo/vector-icons";
 import { StatusBar } from "expo-status-bar";
+import { useNavigation } from "expo-router";
+import { DrawerActions } from "@react-navigation/native";
 
 export default function RootLayout() {
+  const navigation = useNavigation();
   return (
     <ContextProvider>
       <StatusBar backgroundColor="black" style="light" />
@@ -15,6 +19,15 @@ export default function RootLayout() {
               marginTop: "4%",
               backgroundColor: "#dadada",
             },
+            headerLeft: () => (
+              <Ionicons
+                name="menu"
+                size={32}
+                color="#fff" // Customize color
+                style={{ marginLeft: 15 }} // Customize margin or other styling
+                onPress={() => navigation.dispatch(DrawerActions.openDrawer())} // Open the drawer
+              />
+            ),
           }}
         >
           <Drawer.Screen
@@ -25,6 +38,10 @@ export default function RootLayout() {
               drawerItemStyle: {
                 borderBottomColor: "#d3d3d3",
                 borderBottomWidth: 1,
+                padding: 4,
+              },
+              drawerLabelStyle: {
+                fontSize: 16,
               },
             }}
           />
@@ -41,6 +58,9 @@ export default function RootLayout() {
               headerTitleStyle: {
                 fontWeight: "600",
               },
+              drawerLabelStyle: {
+                fontSize: 16,
+              },
             }}
           />
           <Drawer.Screen
@@ -52,6 +72,7 @@ export default function RootLayout() {
               drawerItemStyle: {
                 borderBottomColor: "#d3d3d3",
                 borderBottomWidth: 1,
+                padding: 4,
               },
               headerStyle: {
                 backgroundColor: "black",
@@ -59,6 +80,9 @@ export default function RootLayout() {
               headerTintColor: "white",
               headerTitleStyle: {
                 fontWeight: "600",
+              },
+              drawerLabelStyle: {
+                fontSize: 16,
               },
             }}
           />
@@ -71,6 +95,7 @@ export default function RootLayout() {
               drawerItemStyle: {
                 borderBottomColor: "#d3d3d3",
                 borderBottomWidth: 1,
+                padding: 4,
               },
               headerStyle: {
                 backgroundColor: "black",
@@ -78,6 +103,9 @@ export default function RootLayout() {
               headerTintColor: "white",
               headerTitleStyle: {
                 fontWeight: "600",
+              },
+              drawerLabelStyle: {
+                fontSize: 16,
               },
             }}
           />
@@ -90,6 +118,7 @@ export default function RootLayout() {
               drawerItemStyle: {
                 borderBottomColor: "#d3d3d3",
                 borderBottomWidth: 1,
+                padding: 4,
               },
               headerStyle: {
                 backgroundColor: "black",
@@ -97,6 +126,9 @@ export default function RootLayout() {
               headerTintColor: "white",
               headerTitleStyle: {
                 fontWeight: "600",
+              },
+              drawerLabelStyle: {
+                fontSize: 16,
               },
             }}
           />
@@ -109,6 +141,7 @@ export default function RootLayout() {
               drawerItemStyle: {
                 borderBottomColor: "#d3d3d3",
                 borderBottomWidth: 1,
+                padding: 4,
               },
               headerStyle: {
                 backgroundColor: "black",
@@ -116,6 +149,9 @@ export default function RootLayout() {
               headerTintColor: "white",
               headerTitleStyle: {
                 fontWeight: "600",
+              },
+              drawerLabelStyle: {
+                fontSize: 16,
               },
             }}
           />
