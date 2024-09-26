@@ -71,10 +71,25 @@ export default function ContactUsScreen() {
             alignItems: "center",
             padding: 10,
             backgroundColor: "black",
+            // No need to adjust padding or height
           }}
+          hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }} // Increases touch target size by 8dp on each side
         >
           <Text style={{ color: "white" }}>Send Message</Text>
         </TouchableOpacity>
+
+        {/* <TouchableOpacity
+          onPress={handleSubmit}
+          style={{
+            flex: 1,
+            justifyContent: "center",
+            alignItems: "center",
+            padding: 10,
+            backgroundColor: "black",
+          }}
+        >
+          <Text style={{ color: "white" }}>Send Message</Text>
+        </TouchableOpacity> */}
       </View>
 
       {/* <View style={styles.contactInfo}>
@@ -119,7 +134,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     paddingHorizontal: 10,
     marginBottom: 20,
-    backgroundColor: '#F2F2F2', //
+    backgroundColor: "#F2F2F2", //
   },
   textArea: {
     height: 100,
