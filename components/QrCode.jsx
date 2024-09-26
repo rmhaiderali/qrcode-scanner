@@ -17,8 +17,8 @@ import { useNavigation } from "expo-router";
 import { DrawerActions } from "@react-navigation/native";
 
 export default function QrCode() {
-  const [hasPermission, setHasPermission] = useState(false);
-  const [canAskAgain, setCanAskAgain] = useState(true);
+  const [hasPermission, setHasPermission] = useState(null);
+  const [canAskAgain, setCanAskAgain] = useState(false);
   const [flash, setFlash] = useState(false);
   const [facing, setFacing] = useState("back");
   const animationValue = useRef(new Animated.Value(0)).current;
@@ -61,6 +61,10 @@ export default function QrCode() {
     setQrCodeDetail(data);
     navigate.navigate("detail", { screen: "detail" });
   };
+
+  if (hasPermission === null) {
+    return <View></View>;
+  }
 
   if (!hasPermission) {
     return (
