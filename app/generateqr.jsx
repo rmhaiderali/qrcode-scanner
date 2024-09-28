@@ -59,10 +59,13 @@ export default function generateQrScreen() {
               onChangeText={setInput}
               value={input}
               placeholderTextColor="#555555"
-
               placeholder="Content"
             />
-            <TouchableOpacity style={{ marginTop: 20 }} onPress={generateQRCode}>
+            <TouchableOpacity
+              style={{ marginTop: 20 }}
+              accessibilityLabel="Generate QR"
+              onPress={generateQRCode}
+            >
               <Text style={styles.button}>Generate</Text>
             </TouchableOpacity>
           </View>
@@ -80,6 +83,7 @@ export default function generateQrScreen() {
             </View>
             <TouchableOpacity
               style={[styles.btnContainer, styles.save]}
+              hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
               onPress={saveQRCode}
             >
               <Text style={styles.instraction}>Save</Text>
@@ -87,6 +91,7 @@ export default function generateQrScreen() {
             <TouchableOpacity
               style={[styles.btnContainer, styles.new]}
               onPress={() => setQR("")}
+              hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
             >
               <Text style={styles.instraction}>Create New</Text>
             </TouchableOpacity>
@@ -130,7 +135,7 @@ const styles = StyleSheet.create({
     marginRight: 10,
     borderRadius: 5,
     borderColor: "gray",
-    backgroundColor: '#FFFFFF',
+    backgroundColor: "#FFFFFF",
   },
 
   button: {
@@ -150,7 +155,7 @@ const styles = StyleSheet.create({
   btnContainer: {
     borderWidth: 2,
     borderColor: "black",
-    padding: 4,
+    padding: 6,
     borderRadius: 5,
     backgroundColor: "black",
     width: "70%",

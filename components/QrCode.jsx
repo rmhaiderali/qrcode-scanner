@@ -12,6 +12,7 @@ import {
 } from "react-native";
 import { CameraView, Camera } from "expo-camera";
 import { MaterialIcons, Ionicons } from "@expo/vector-icons";
+// import Ionicons from '@expo/vector-icons/Ionicons';
 import { Context } from "@/hooks/Context";
 import { useNavigation } from "expo-router";
 import { DrawerActions } from "@react-navigation/native";
@@ -177,17 +178,18 @@ export default function QrCode() {
           onPress={() => navigate.dispatch(DrawerActions.openDrawer())}
           style={styles.iconButton}
         >
-          <MaterialIcons name="menu" size={36} color="white" />
+          <MaterialIcons name="menu" size={34} color="black" />
         </TouchableOpacity>
         <TouchableOpacity onPress={toggleFlash} style={styles.iconButton}>
-          <Ionicons
-            name={flash === true ? "flashlight" : "flashlight-outline"}
-            size={36}
-            color="white"
+        <Ionicons
+            name={"flashlight-outline"}
+            size={34}
+            color={flash === true ? "green" : "black"}
           />
         </TouchableOpacity>
         <TouchableOpacity onPress={toggleCameraType} style={styles.iconButton}>
-          <MaterialIcons name="flip-camera-ios" size={36} color="white" />
+          {/* <MaterialIcons name="camera-reverse-outline" size={32} color="black" /> */}
+          <Ionicons name="camera-reverse-outline" size={34} color="black" />
         </TouchableOpacity>
       </View>
     </View>
@@ -271,6 +273,10 @@ const styles = StyleSheet.create({
     paddingHorizontal: "8%",
   },
   iconButton: {
-    padding: 15,
+    padding: 6,
+    borderWidth:1,
+    borderColor:"#fff",
+    backgroundColor:"#fff",
+    borderRadius:14
   },
 });
